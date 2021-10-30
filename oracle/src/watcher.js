@@ -169,6 +169,8 @@ async function main({ sendToQueue }) {
     const rangeEndBlock = (config.main && config.main.blockPollingLimit) ? fromBlock + config.main.blockPollingLimit : lastBlockToProcess
     let toBlock = Math.min(lastBlockToProcess, rangeEndBlock)
 
+    logger.debug({ fromBlock, rangeEndBlock, limit: config.main.blockPollingLimit })
+
     const events = (await getEvents({
       contract: eventContract,
       event: config.event,
